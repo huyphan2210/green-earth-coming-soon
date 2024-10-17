@@ -1,0 +1,24 @@
+:root {
+  --green: #388E3C
+  --light-green: #8BC34A;
+  --lime-green: #DCE775;
+  --pastel-yellow: #FFF59D;
+
+  --brown: #533710;
+  --light-brown: #6E4B1F;
+  --mustard-brown: #98651E;
+  --beige: #F0D394;
+
+  --gray: #ABABAB;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  
+  #app {
+    flex: 1;
+  }
+}
