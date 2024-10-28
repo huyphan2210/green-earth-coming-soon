@@ -1,13 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Header from "./components/Header/Header.vue";
+import Heading from "./components/Heading/Heading.vue";
+</script>
 
 <template>
-  <header></header>
+  <Header />
   <main>
-    <h1>
-      <span>WE'RE</span>
-      <span>COMING</span>
-      <span>SOON</span>
-    </h1>
+    <Heading />
   </main>
   <footer></footer>
 </template>
