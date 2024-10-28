@@ -22,3 +22,14 @@ body {
     flex: 1;
   }
 }
+
+input, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-style: solid;
+}
+
+button:hover {
+  cursor: pointer;
+}
