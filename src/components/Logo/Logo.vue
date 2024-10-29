@@ -89,7 +89,36 @@
 }
 
 .green {
-  transform: translateX(-100%);
+  animation: slideInFromLeft 1s ease-in-out forwards;
+}
+
+.earth {
+  transform: translateY(100%);
+  animation: slideInFromBottom 1s ease-in-out forwards 1s;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media screen and (min-width: 64rem) {
