@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+US+Trad:wght@100..400&display=swap');
+
 :root {
+  // Colors
   --green: #388E3C
   --light-green: #8BC34A;
   --lime-green: #DCE775;
@@ -10,6 +14,10 @@
   --beige: #F0D394;
 
   --gray: #ABABAB;
+  --background-overlay: rgba(0, 0, 0, 25%);
+
+  // Padding
+  --padding: 1rem;
 }
 
 body {
@@ -17,6 +25,8 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  font-family: "Open Sans", sans-serif;
   
   #app {
     flex: 1;
@@ -32,4 +42,20 @@ input, button {
 
 button:hover {
   cursor: pointer;
+}
+
+* {
+  will-change: transform;
+}
+
+@media screen and (min-width: 37.5rem) {
+  :root {
+    --padding: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  :root {
+    --padding: 2.5rem;
+  }
 }
