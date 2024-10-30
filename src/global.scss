@@ -18,6 +18,7 @@
 
   // Padding
   --padding: 1rem;
+  --header-height: 59px;
 }
 
 body {
@@ -57,5 +58,6 @@ button:hover {
 @media screen and (min-width: 64rem) {
   :root {
     --padding: 2.5rem;
+    --header-height: 115px;
   }
 }
