@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import burgerMenu from "../../assets/burger-menu.svg";
-import Logo from "../Logo/Logo.vue";
 import Menu from "./Menu/Menu.vue";
 
 const isMenuShown = ref(false);
@@ -12,7 +11,6 @@ const toggleMenu = () => {
 
 <template>
   <header>
-    <Logo />
     <button type="button" class="burger-menu" :onclick="toggleMenu">
       <img :src="burgerMenu" loading="lazy" alt="Menu" />
     </button>
@@ -27,9 +25,10 @@ header {
   left: 0;
   top: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   background-color: white;
+  min-height: var(--header-height);
 
   .burger-menu {
     background-color: transparent;
