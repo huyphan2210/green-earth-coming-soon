@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<!-- <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 
 const logoWrapperRef = ref<HTMLDivElement | null>();
@@ -9,7 +9,7 @@ onMounted(() => {
     setTimeout(() => logoWrapper.classList.toggle("move"), 4000);
   }
 });
-</script>
+</script> -->
 
 <template>
   <div ref="logoWrapperRef" class="logo-wrapper">
@@ -97,34 +97,6 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.logo-wrapper {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: 1.5s;
-  z-index: 1;
-
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    z-index: 1;
-    animation: reduceSize 2s ease-in-out forwards;
-    border-radius: 0 50% 0 0;
-  }
-
-  &.move {
-    top: var(--padding);
-    left: var(--padding);
-    transform: translate(0);
-  }
-}
-
 .logo {
   &--desktop {
     display: none;
@@ -134,13 +106,23 @@ onMounted(() => {
 .green {
   opacity: 0;
   transform: translateX(-100%);
-  animation: slideInFromLeft 1s ease-in-out forwards 2s;
+  animation: slideInFromLeft 1s ease-in-out forwards;
 }
 
 .earth {
   opacity: 0;
   transform: translateY(100%);
-  animation: slideInFromBottom 1s ease-in-out forwards 3s;
+  animation: slideInFromBottom 1s ease-in-out forwards 1s;
+}
+
+@media screen and (min-width: 64rem) {
+  .logo {
+    display: none;
+
+    &--desktop {
+      display: unset;
+    }
+  }
 }
 
 @keyframes slideInFromLeft {
@@ -175,20 +157,6 @@ onMounted(() => {
   100% {
     width: 0;
     height: 0;
-  }
-}
-
-@media screen and (min-width: 64rem) {
-  .logo-wrapper.move {
-    left: calc(var(--padding) * 2);
-  }
-
-  .logo {
-    display: none;
-
-    &--desktop {
-      display: unset;
-    }
   }
 }
 </style>
