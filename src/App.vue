@@ -22,6 +22,19 @@ import Heading from "./components/Heading/Heading.vue";
     </section>
     <section class="content">
       <Heading />
+      <hgroup>
+        <h2>
+          <span>Welcome to </span>
+          <span>Green </span>
+          <span>Earth</span>
+        </h2>
+        <p>
+          At Green Earth, we’re passionate about gardening, sustainability, and
+          helping you create a green oasis right at home. Whether you're a
+          seasoned gardener or just starting out, we have everything you need to
+          make your garden flourish.
+        </p>
+      </hgroup>
     </section>
   </main>
   <footer></footer>
@@ -40,7 +53,31 @@ main {
   }
 
   .content {
+    padding-top: 2.4375rem;
     padding-inline: calc(var(--padding) * 2);
+
+    hgroup {
+      text-align: center;
+
+      h2 {
+        font-size: clamp(1.5rem, 2vw, 2rem);
+        font-weight: 400;
+        span {
+          color: var(--green);
+          &:first-child {
+            color: var(--light-green);
+          }
+          &:last-child {
+            color: var(--brown);
+          }
+        }
+      }
+
+      p {
+        font-size: clamp(1rem, 1.5vw, 1.5rem);
+        line-height: 1.5;
+      }
+    }
   }
 }
 
@@ -60,7 +97,12 @@ main {
     }
 
     .content {
+      padding-top: 12.5rem;
       width: calc(60% - var(--padding) * 2);
+
+      hgroup {
+        text-align: left;
+      }
     }
   }
 }
