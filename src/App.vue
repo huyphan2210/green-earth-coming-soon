@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Footer from "./components/Footer/Footer.vue";
 import Header from "./components/Header/Header.vue";
 import Heading from "./components/Heading/Heading.vue";
 </script>
@@ -35,9 +36,12 @@ import Heading from "./components/Heading/Heading.vue";
           make your garden flourish.
         </p>
       </hgroup>
+      <button type="button">
+        Subscribe
+      </button>
     </section>
   </main>
-  <footer></footer>
+  <Footer />
 </template>
 
 <style lang="scss" scoped>
@@ -53,15 +57,16 @@ main {
   }
 
   .content {
-    padding-top: 2.4375rem;
+    padding: 2.4375rem 3.375rem;
     padding-inline: calc(var(--padding) * 2);
 
     hgroup {
       text-align: center;
-
+      margin-block: 2.625rem;
       h2 {
         font-size: clamp(1.5rem, 2vw, 2rem);
         font-weight: 400;
+        margin-block: 0 1.25rem;
         span {
           color: var(--green);
           &:first-child {
@@ -76,7 +81,18 @@ main {
       p {
         font-size: clamp(1rem, 1.5vw, 1.5rem);
         line-height: 1.5;
+        margin-block: 0;
       }
+    }
+
+    button {
+      margin: auto;
+      display: block;
+      background-color: var(--pastel-yellow);
+      padding: 1rem 3rem;
+      color: var(--mustard-brown);
+      border-radius: 0.25rem;
+      font-size: 1rem;
     }
   }
 }
@@ -102,6 +118,9 @@ main {
 
       hgroup {
         text-align: left;
+      }
+      button {
+        margin: 0;
       }
     }
   }
