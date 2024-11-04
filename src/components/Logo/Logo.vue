@@ -1,16 +1,3 @@
-<!-- <script lang="ts" setup>
-import { onMounted, ref } from "vue";
-
-const logoWrapperRef = ref<HTMLDivElement | null>();
-
-onMounted(() => {
-  const logoWrapper = logoWrapperRef.value;
-  if (logoWrapper) {
-    setTimeout(() => logoWrapper.classList.toggle("move"), 4000);
-  }
-});
-</script> -->
-
 <template>
   <div ref="logoWrapperRef" class="logo-wrapper">
     <svg
