@@ -14,7 +14,7 @@ h1 {
   font-size: clamp(3rem, 4vw, 4.25rem);
   line-height: 1.5;
   max-width: 31.875rem;
-  margin-block: 0 1rem;
+  margin-block: 0;
   margin-inline: auto;
   span {
     display: inline-block;
