@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import Footer from "./components/Footer/Footer.vue";
 import Header from "./components/Header/Header.vue";
 import Heading from "./components/Heading/Heading.vue";
+import SubscriptionBox from "./components/SubscriptionBox/SubscriptionBox.vue";
+
+const showSubscriptionBox = ref(false);
 </script>
 
 <template>
@@ -36,10 +40,18 @@ import Heading from "./components/Heading/Heading.vue";
           make your garden flourish.
         </p>
       </hgroup>
-      <button type="button">
+      <button
+        type="button"
+        v-on:click="
+          () => {
+            showSubscriptionBox = true;
+          }
+        "
+      >
         Subscribe
       </button>
     </section>
+    <SubscriptionBox :show-subscription-box="showSubscriptionBox" />
   </main>
   <Footer />
 </template>
@@ -93,6 +105,11 @@ main {
       color: var(--mustard-brown);
       border-radius: 0.25rem;
       font-size: 1rem;
+      transition: 0.3s;
+
+      &:hover {
+        border-radius: 1rem;
+      }
     }
   }
 }
