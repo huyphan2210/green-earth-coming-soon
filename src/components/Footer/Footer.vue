@@ -27,10 +27,14 @@ const navigations = [
     href: "https://huy-phan-portfolio.netlify.app/",
   },
 ];
+
+const props = defineProps<{
+  isFromContent: boolean;
+}>();
 </script>
 
 <template>
-  <footer>
+  <footer :class="props.isFromContent ? 'from-content' : ''">
     <div class="footer-logo-wrapper">
       <Logo />
     </div>
@@ -47,6 +51,7 @@ const navigations = [
     </nav>
   </footer>
 </template>
+
 <style lang="scss" scoped>
 footer {
   background-image: linear-gradient(90deg, var(--lime-green), var(--green));
@@ -57,19 +62,31 @@ footer {
   nav {
     display: flex;
     gap: 1rem;
-    a img{
+    a img {
       height: clamp(2rem, 5vw, 3rem);
       vertical-align: middle;
     }
+  }
+  &.from-content {
+    display: none;
   }
 }
 
 @media screen and (min-width: 64rem) {
   footer {
+    display: none;
     padding-inline: calc(var(--padding) * 2);
     padding-block: 1.5rem;
     .footer-logo-wrapper {
       display: none;
+    }
+
+    &.from-content {
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: calc(100% - (var(--padding) * 4));
     }
   }
 }
