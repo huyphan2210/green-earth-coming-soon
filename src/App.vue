@@ -5,7 +5,14 @@ import Header from "./components/Header/Header.vue";
 import Heading from "./components/Heading/Heading.vue";
 import SubscriptionBox from "./components/SubscriptionBox/SubscriptionBox.vue";
 
-const showSubscriptionBox = ref(false);
+const isSubscriptionBoxShown = ref(false);
+const openSubscriptionBox = () => {
+  isSubscriptionBoxShown.value = true;
+};
+
+const closeSubscriptionBox = () => {
+  isSubscriptionBoxShown.value = false;
+};
 </script>
 
 <template>
@@ -40,24 +47,20 @@ const showSubscriptionBox = ref(false);
           make your garden flourish.
         </p>
       </hgroup>
-      <button
-        type="button"
-        v-on:click="
-          () => {
-            showSubscriptionBox = true;
-          }
-        "
-      >
-        Subscribe
-      </button>
+      <button type="button" v-on:click="openSubscriptionBox">Subscribe</button>
+      <Footer is-from-content />
     </section>
-    <SubscriptionBox :show-subscription-box="showSubscriptionBox" />
+    <SubscriptionBox
+      :show-subscription-box="isSubscriptionBoxShown"
+      :close-subscription-box="closeSubscriptionBox"
+    />
   </main>
-  <Footer />
+  <Footer :is-from-content="false" />
 </template>
 
 <style lang="scss" scoped>
 main {
+  margin-bottom: auto;
   .image-wrapper {
     display: flex;
     .image {
