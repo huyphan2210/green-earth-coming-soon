@@ -2,6 +2,7 @@
 import { ref, watch } from "vue";
 import pinkFlower from "../../assets/pink-flower.svg";
 import sunFlower from "../../assets/sunflower.svg";
+import submitImg from "../../assets/next.svg";
 
 const props = defineProps<{
   showSubscriptionBox: boolean;
@@ -11,6 +12,7 @@ const props = defineProps<{
 const subsciptionBoxRef = ref<HTMLDialogElement>();
 
 const handleClickDialog = (e: MouseEvent) => {
+  if (e.srcElement !== e.currentTarget) return;
   const dialog = e.currentTarget as HTMLDialogElement;
 
   const rect = dialog.getBoundingClientRect();
@@ -29,6 +31,11 @@ const handleClickDialog = (e: MouseEvent) => {
   }
 };
 
+const submitEmail = (e: Event) => {
+  e.preventDefault();
+  e.stopPropagation();
+};
+
 watch(
   () => props.showSubscriptionBox,
   (isShown) => {
@@ -44,22 +51,29 @@ watch(
 
 <template>
   <dialog ref="subsciptionBoxRef" :onclick="handleClickDialog">
-    <img class="pink-flower" :src="pinkFlower" loading="lazy" alt="Pink Flower" />
+    <img
+      class="pink-flower"
+      :src="pinkFlower"
+      loading="lazy"
+      alt="Pink Flower"
+    />
     <img class="sunflower" :src="sunFlower" loading="lazy" alt="Sunflower" />
     <h2>Coming soon - Get Ready to grow!</h2>
     <p>
       Our doors will open soon! Be the first to know about our grand opening and
       exclusive offers by signing up for our newsletter below.
     </p>
-    <form>
+    <form @submit="submitEmail">
       <input type="email" placeholder="Please type your email here..." />
+      <button type="submit">
+        <img :src="submitImg" loading="lazy" alt="Submit Image" />
+      </button>
     </form>
   </dialog>
 </template>
 
 <style lang="scss" scoped>
 dialog {
-  position: relative;
   width: calc(100vw - 4.625rem);
   max-width: 40rem;
   padding: 1.3125rem;
@@ -82,12 +96,14 @@ dialog {
       animation-name: disappear;
     }
   }
-  
+
   .pink-flower {
     position: absolute;
     right: 0;
     top: 0;
     transform: translateY(-50%);
+    width: 27%;
+    max-width: 7.9375rem;
   }
 
   .sunflower {
@@ -95,6 +111,9 @@ dialog {
     right: 0;
     bottom: 0;
     transform: translateY(50%);
+    width: 21%;
+    max-width: 6.3125rem;
+    z-index: 1;
   }
 
   h2 {
@@ -114,15 +133,30 @@ dialog {
   }
 
   form {
+    width: 70%;
+    display: flex;
     input {
-      width: 70%;
+      flex: 1;
       max-width: 30rem;
       font-size: 1rem;
       padding: 1rem;
-      border-radius: 0.25rem;
+      border-radius: 0.25rem 0 0 0.25rem;
 
       &:focus {
         outline: none;
+      }
+    }
+
+    button {
+      flex: 1;
+      max-width: 4.8125rem;
+      min-width: 3.625rem;
+      border-radius: 0 0.25rem 0.25rem 0;
+      background: linear-gradient(90deg, var(--green), var(--light-green));
+
+      img {
+        width: 100%;
+        max-width: 1.8125rem;
       }
     }
   }

@@ -42,6 +42,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
+    max-width: 120rem;
   }
 }
 
@@ -55,6 +56,12 @@ input, button {
 
 button:hover {
   cursor: pointer;
+}
+
+button, a {
+  &:focus-visible {
+    outline: var(--green) 0.25rem solid;
+  }
 }
 
 * {

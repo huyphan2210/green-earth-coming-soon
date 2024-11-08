@@ -124,6 +124,7 @@ main {
     flex: 1;
     .image-wrapper {
       width: 40%;
+      max-width: 42rem;
       .image {
         display: none;
         &.desktop {
@@ -134,7 +135,7 @@ main {
 
     .content {
       padding-top: 12.5rem;
-      width: calc(60% - var(--padding) * 2);
+      flex: 1;
 
       hgroup {
         text-align: left;
