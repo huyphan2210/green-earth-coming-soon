@@ -16,7 +16,7 @@ const toggleMenu = () => {
     <button type="button" class="burger-menu" :onclick="toggleMenu">
       <img :src="burgerMenu" loading="lazy" alt="Menu" />
     </button>
-    <Menu :toggle-menu="toggleMenu" v-if="isMenuShown" />
+    <Menu :toggle-menu="toggleMenu" :is-menu-shown="isMenuShown" />
   </header>
 </template>
 
