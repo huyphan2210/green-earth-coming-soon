@@ -97,6 +97,10 @@ dialog {
     }
   }
 
+  &:focus-visible {
+    outline: none;
+  }
+
   .pink-flower {
     position: absolute;
     right: 0;
