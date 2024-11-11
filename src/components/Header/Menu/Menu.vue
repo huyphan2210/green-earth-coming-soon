@@ -1,22 +1,21 @@
 <script lang="ts" setup>
-import { onUnmounted, ref } from "vue";
+import { onUnmounted, ref, watch } from "vue";
 import closeIcon from "../../../assets/close-icon.svg";
 
 const props = defineProps<{
   toggleMenu: () => void;
+  isMenuShown: boolean;
 }>();
 
 const { toggleMenu } = props;
 
-const menuOverlayRef = ref<HTMLDivElement | null>();
+const menuOverlayRef = ref<HTMLDialogElement | null>();
 const menuRef = ref<HTMLMenuElement | null>();
 
 const toggleClosing = () => {
   const menuOverlay = menuOverlayRef.value;
-  const menu = menuRef.value;
-  if (menuOverlay && menu) {
+  if (menuOverlay) {
     menuOverlay.classList.toggle("closing");
-    menu.classList.toggle("closing");
   }
 };
 
@@ -25,55 +24,92 @@ const closeMenu = () => {
   setTimeout(() => toggleMenu(), 300);
 };
 
+const handleClickDialog = (e: MouseEvent) => {
+  if (e.srcElement !== e.currentTarget) return;
+  const dialog = e.currentTarget as HTMLDialogElement;
+
+  const rect = dialog.getBoundingClientRect();
+  const isInDialog =
+    e.clientX >= rect.left &&
+    e.clientX <= rect.right &&
+    e.clientY >= rect.top &&
+    e.clientY <= rect.bottom;
+
+  if (!isInDialog) {
+    toggleClosing();
+  }
+};
+
 onUnmounted(() => {
   toggleClosing();
 });
+
+watch(
+  () => props.isMenuShown,
+  (isShown) => {
+    const menuOverlay = menuOverlayRef.value;
+    if (isShown) {
+      menuOverlay?.showModal();
+    } else {
+      menuOverlay?.close();
+      menuOverlay?.classList.toggle("closing");
+    }
+  }
+);
 </script>
 
 <template>
-  <div ref="menuOverlayRef" class="menu-overlay">
+  <dialog ref="menuOverlayRef" class="menu-overlay" @click="handleClickDialog">
     <menu ref="menuRef" class="menu">
-      <button class="close-icon" type="button" :onclick="closeMenu">
+      <button class="close-icon" type="button" @click="closeMenu">
         <img :src="closeIcon" loading="lazy" alt="Close icon" />
       </button>
       <h2>This place is still a mystery</h2>
     </menu>
-  </div>
+  </dialog>
 </template>
 
 <style lang="scss" scoped>
 .menu-overlay {
-  position: fixed;
+  transform: translateX(100%);
+  animation: 0.3s ease-in-out forwards;
+  animation-name: slideIn;
+  min-height: 100dvh;
+  width: 80%;
+  max-width: 18.75rem;
+  border: none;
+  margin: 0;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--background-overlay);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  opacity: 0;
-  animation: 0.3s ease-in-out forwards;
-  animation-name: appear;
+  margin-left: auto;
+  padding: 0;
+  &::backdrop {
+    animation: 0.3s ease-in-out forwards;
+    animation-name: appear;
+    background-color: var(--background-overlay);
+  }
+  &[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  &:focus-visible {
+    outline: none;
+  }
+
   &.closing {
-    animation-name: disappear;
+    animation-name: slideOut;
+    &::backdrop {
+      animation-name: disappear;
+    }
   }
 
   .menu {
     padding: var(--padding);
-    flex: 1;
-    width: 80%;
-    max-width: 18.75rem;
     background-color: var(--lime-green);
     margin: 0;
-    transform: translateX(100%);
-    animation: 0.3s ease-in-out forwards;
-    animation-name: slideIn;
     text-align: right;
     position: relative;
-    &.closing {
-      animation-name: slideOut;
-    }
+    flex: 1;
 
     .close-icon {
       background: transparent;
