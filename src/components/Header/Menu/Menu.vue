@@ -132,26 +132,6 @@ watch(
   }
 }
 
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes disappear {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
 @keyframes slideIn {
   0% {
     transform: translateX(100%);

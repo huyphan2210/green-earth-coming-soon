@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import Footer from "./components/Footer/Footer.vue";
 import Header from "./components/Header/Header.vue";
 import Heading from "./components/Heading/Heading.vue";
@@ -13,12 +13,25 @@ const openSubscriptionBox = () => {
 const closeSubscriptionBox = () => {
   isSubscriptionBoxShown.value = false;
 };
+
+const imageWrapperRef = ref<HTMLElement>();
+const contentHgroupRef = ref<HTMLElement>();
+const subscribeButtonRef = ref<HTMLButtonElement>();
+
+onMounted(() => {
+  const imageWrapper = imageWrapperRef.value;
+  const contentHroup = contentHgroupRef.value;
+  const subscribeButton = subscribeButtonRef.value;
+  imageWrapper?.classList.toggle("appear");
+  contentHroup?.classList.toggle("appear");
+  subscribeButton?.classList.toggle("appear");
+});
 </script>
 
 <template>
   <Header />
   <main>
-    <section class="image-wrapper">
+    <section ref="imageWrapperRef" class="image-wrapper">
       <img
         class="image"
         src="./assets/images/image-mobile.png"
@@ -34,7 +47,7 @@ const closeSubscriptionBox = () => {
     </section>
     <section class="content">
       <Heading />
-      <hgroup>
+      <hgroup ref="contentHgroupRef">
         <h2>
           <span>Welcome to </span>
           <span>Green </span>
@@ -47,7 +60,13 @@ const closeSubscriptionBox = () => {
           make your garden flourish.
         </p>
       </hgroup>
-      <button type="button" v-on:click="openSubscriptionBox">Subscribe</button>
+      <button
+        ref="subscribeButtonRef"
+        type="button"
+        v-on:click="openSubscriptionBox"
+      >
+        Subscribe
+      </button>
       <Footer is-from-content />
     </section>
     <SubscriptionBox
@@ -62,6 +81,7 @@ const closeSubscriptionBox = () => {
 main {
   margin-bottom: auto;
   .image-wrapper {
+    opacity: 0;
     display: flex;
     .image {
       width: 100%;
@@ -76,6 +96,7 @@ main {
     padding-inline: calc(var(--padding) * 2);
 
     hgroup {
+      opacity: 0;
       text-align: center;
       margin-block: 2.625rem;
       h2 {
@@ -101,6 +122,7 @@ main {
     }
 
     button {
+      opacity: 0;
       margin: auto;
       display: block;
       background-color: var(--pastel-yellow);

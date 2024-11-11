@@ -1,26 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+US+Trad:wght@100..400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+US+Trad:wght@100..400&display=swap");
 
 @font-face {
-  font-family: 'Nico Moji';
-  src: url('./assets/fonts/NicoMoji-Regular.ttf');
+  font-family: "Nico Moji";
+  src: url("./assets/fonts/NicoMoji-Regular.ttf");
   font-weight: 400;
   font-style: normal;
 }
 
 :root {
   // Colors
-  --green: #388E3C;
-  --light-green: #8BC34A;
-  --lime-green: #DCE775;
-  --pastel-yellow: #FFF59D;
+  --green: #388e3c;
+  --light-green: #8bc34a;
+  --lime-green: #dce775;
+  --pastel-yellow: #fff59d;
 
   --brown: #533710;
-  --light-brown: #6E4B1F;
-  --mustard-brown: #98651E;
-  --beige: #F0D394;
+  --light-brown: #6e4b1f;
+  --mustard-brown: #98651e;
+  --beige: #f0d394;
 
-  --gray: #ABABAB;
+  --gray: #ababab;
   --background-overlay: rgba(0, 0, 0, 25%);
 
   // Padding
@@ -36,7 +36,7 @@ body {
   overflow-x: hidden;
   align-items: center;
   font-family: "Open Sans", sans-serif;
-  
+
   #app {
     width: 100%;
     flex: 1;
@@ -46,7 +46,8 @@ body {
   }
 }
 
-input, button {
+input,
+button {
   margin: 0;
   padding: 0;
   border: 0;
@@ -58,10 +59,16 @@ button:hover {
   cursor: pointer;
 }
 
-button, a {
+button,
+a {
   &:focus-visible {
     outline: var(--green) 0.25rem solid;
   }
+}
+
+.appear {
+  animation: 0.3s ease-in-out forwards 2s;
+  animation-name: appear;
 }
 
 * {
@@ -78,5 +85,25 @@ button, a {
   :root {
     --padding: 2.5rem;
     --header-height: 115px;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }

@@ -16,6 +16,7 @@ h1 {
   max-width: 31.875rem;
   margin-block: 0;
   margin-inline: auto;
+  animation: scaleOut 1s ease-in-out forwards;
   span {
     display: inline-block;
     &.top {
@@ -24,7 +25,7 @@ h1 {
       float: right;
       right: 0;
       top: 0;
-      animation: moveLeft 1s ease-in-out forwards;
+      animation: moveLeft 1s ease-in-out forwards 1s;
     }
 
     &.middle {
@@ -32,7 +33,7 @@ h1 {
       color: var(--light-green);
       text-align: center;
       transform: rotate(-36deg);
-      animation: rotateToNormal 1s ease-in-out forwards;
+      animation: rotateToNormal 1s ease-in-out forwards 1s;
     }
 
     &.bottom {
@@ -41,7 +42,7 @@ h1 {
       text-align: start;
       left: 0;
       top: 0;
-      animation: moveRight 1s ease-in-out forwards;
+      animation: moveRight 1s ease-in-out forwards 1s;
     }
   }
 }
@@ -49,6 +50,15 @@ h1 {
 @media screen and (min-width: 64rem) {
   h1 {
     margin-block: 4.25rem 3rem;
+  }
+}
+
+@keyframes scaleOut {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 

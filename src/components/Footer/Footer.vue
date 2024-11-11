@@ -4,6 +4,7 @@ import linkedInIcon from "../../assets/linked-in.svg";
 import githubIcon from "../../assets/github.svg";
 import figmaIcon from "../../assets/figma.svg";
 import portfolioIcon from "../../assets/portfolio.svg";
+import { onMounted, ref } from "vue";
 
 const navigations = [
   {
@@ -31,10 +32,16 @@ const navigations = [
 const props = defineProps<{
   isFromContent: boolean;
 }>();
+
+const footerRef = ref<HTMLElement>();
+onMounted(() => {
+  const footer = footerRef.value;
+  footer?.classList.toggle("appear");
+});
 </script>
 
 <template>
-  <footer :class="props.isFromContent ? 'from-content' : ''">
+  <footer ref="footerRef" :class="props.isFromContent ? 'from-content' : ''">
     <div class="footer-logo-wrapper">
       <Logo />
     </div>
@@ -54,6 +61,7 @@ const props = defineProps<{
 
 <style lang="scss" scoped>
 footer {
+  opacity: 0;
   background-image: linear-gradient(90deg, var(--lime-green), var(--green));
   padding: var(--padding);
   display: flex;
